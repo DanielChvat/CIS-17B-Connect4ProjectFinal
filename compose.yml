@@ -1,0 +1,9 @@
+name: cis17b_connect4_final
+
+services:
+  web:
+    image: php:8.3.7-apache
+    ports:
+      - 80:80
+    volumes:
+      - ./Connect4ProjectWebGUI:/var/www/html
