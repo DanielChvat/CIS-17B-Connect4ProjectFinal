@@ -13,7 +13,10 @@ services:
     ports:
       - 3306:3306
     environment:
-      MARIADB_ROOT_PASSWORD: pass
+      MARIADB_RANDOM_ROOT_PASSWORD: 1
+      MARIADB_DATABASE: "c4db"
+      MARIADB_USER: "c4db"
+      MARIADB_PASSWORD: "c4db"
 
   adminer:
     image: adminer
