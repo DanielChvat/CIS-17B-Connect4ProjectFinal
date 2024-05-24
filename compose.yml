@@ -7,3 +7,15 @@ services:
       - 80:80
     volumes:
       - ./Connect4ProjectWebGUI:/var/www/html
+
+  db:
+    image: mariadb
+    ports:
+      - 3306:3306
+    environment:
+      MARIADB_ROOT_PASSWORD: pass
+
+  adminer:
+    image: adminer
+    ports:
+      - 8080:8080
