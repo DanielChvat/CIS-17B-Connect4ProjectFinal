@@ -1,3 +1,64 @@
-html, body {
+html, 
+body {
     margin: 0
+}
+
+body {
+    background: linear-gradient(180deg, #039FFF 0%, #5CC1FF 38%, #A6DDFF 76%);
+    height: 100vh;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: max-content auto;
+    align-items: center;
+}
+
+.menu_container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+
+    margin-bottom: 100px;
+}
+
+.title {
+    margin: 0;
+    font-family: 'Lalezar';
+    font-style: normal;
+    font-size: 11em;
+    line-height: 1.25;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: 0.11em;
+
+    color: #FCC634;
+
+    text-shadow: 0px 0px 20px #1565F8;
+}
+
+.menu_buttons {
+    grid-row: 2;
+}
+
+button {
+    margin: 0 2em;
+    padding: 0.5em 1.4em;
+
+    background: #FCC634;
+    border: 3px solid #1565F8;
+    border-radius: 20px;
+
+    font-family: 'Inter';
+    font-size: 1.6em;
+    text-align: center;
+}
+button:hover {
+    cursor: pointer;
+}
+
+.board_main_menu {
+    float: left;
+    padding: 10% 0;
+    max-height: 95vh;
+    box-sizing: border-box;
 }
