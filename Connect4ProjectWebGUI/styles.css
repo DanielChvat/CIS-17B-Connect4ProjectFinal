@@ -38,6 +38,7 @@ body {
 
 .menu_buttons {
     grid-row: 2;
+    text-decoration: none;
 }
 
 button {

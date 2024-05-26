@@ -22,8 +22,8 @@
     <div class="menu_container">
         <h1 class="title">CONNECT4</h1>
         <div class="menu_buttons">
-            <button>Sign Up</button>
-            <button>Log In</button>
+            <button><a href = "signup.php">Sign Up</a></button>
+            <button><a href = "login.php">Login</a></button>
         </div>
     </div>
     <div class="background_clouds"></div>
