@@ -7,11 +7,11 @@ $display = 4;
 // Handle user deletion and addition
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['delete'])) {
-        $userID = $_POST['userID'];
-        $sql = "DELETE FROM entity_accounts WHERE UserID = ?";
+        $userID = $_POST['ID'];
+        $sql = "DELETE FROM entity_accounts WHERE ID = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$userID]);
-    } 
+    }
     
     elseif (isset($_POST['addUser'])) {
         $username = $_POST['Username'];
@@ -22,11 +22,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute([$username, $password, $isAdmin]);
     } 
 
-    // elseif (isset($_POST['editUser'])){
-        
-    // }
-
+    elseif (isset($_POST['editUser'])){
+        $userID = $_POST['ID'];
+        $_SESSION["ID"] = $userID;
+        header("Location: editUser.php");
+    }
+    
+    elseif (isset($_POST['addEdit'])){
+        $userID = $_SESSION['ID'];
+        $username = $_POST['Username'];
+        $password = password_hash($_POST['Password'], PASSWORD_BCRYPT);
+        $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
+        $sql = "UPDATE entity_accounts SET Username = ?, Password = ?, isAdmin = ? WHERE ID = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$username, $password, $isAdmin, $userID]);
+        header("Location: adminMenu.php");
+    }
 }
+
+
+
+
+
+
+
+
 
 //function
 
@@ -51,7 +71,7 @@ $offset = ($currentPage -1) * $display;
 
 
 // Fetch users from the database
-$sql = "SELECT Username, Password, isAdmin, Wins FROM entity_accounts LIMIT $display OFFSET $offset";
+$sql = "SELECT ID, Username, Password, isAdmin, Wins FROM entity_accounts LIMIT $display OFFSET $offset";
 $users = $conn->query($sql);
 
 $userArray = array();
@@ -76,6 +96,8 @@ if (isset($_POST['action']) && $_POST['action'] == 'getPageCount') {
 
     echo $totalPages;
 }
+
+
 
 
 

@@ -1,3 +1,7 @@
+<?php include 'AdminPhp.php'?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,30 +16,19 @@
     <title>Connect4</title>
 </head>
 <body>
-    <?php include 'AdminPhp.php' ?>
     <div class="admin-container">
-        <h1>ADMIN PAGE</h1>
-        <a href="login.php">Home <i class="fa fa-home"></i></a>
-        <button id="edit-button">Edit <i class="fa fa-pencil"></i></button>
-        <div class="users-container">
-            <ul id="user-list"></ul>
-        </div>
-        <div class="admin-menu-buttons">
-            <button id="left-arrow"><</button>
-            <label id="pageNum">1</label>
-            <button id="right-arrow">></button>
-        </div>
+        <h1>Edit User</h1>
+        <a href="login.php">Home<i class="fa fa-house"></i></a>
         <form method = "POST">
             <div class="form-group">
-                <label for="">Username</label>
+                <label for="">New Username</label>
                 <input type="text" id="Username" name="Username" required>
-                <label for="">Password</label>
+                <label for="">New Password</label>
                 <input type="text" id="Password" name="Password" required> 
                 <label for="">Admin</label>
                 <input type="checkbox" id="isAdmin" name="isAdmin">
-                <button type="submit" class="btn" name="addUser">Add User</button>
+                <button type="submit" class="btn" name="addEdit">Confirm</button>
             </div>
         </form>
-        <script src="adminmenu.js"></script>
 </body>
 </html>
