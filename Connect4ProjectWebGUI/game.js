@@ -3,14 +3,14 @@ const columns = 7;
 let board = [];
 let currentPlayer = null;
 let player1Color = '';
-let player2Color = 'yellow';  // Default color for the computer player
+let player2Color = 'yellow';  // Default color for computer 
 let isGameOver = false;
 
 const gameBoard = document.getElementById('game-board');
 const resetButton = document.getElementById('reset-button');
 const startButton = document.getElementById('start-button');
 const colorSelection = document.getElementById('color-selection');
-const player1ColorSelect = document.getElementById('player1-color');
+const playerColor = document.getElementById('player1-color');
 const winMessage = document.getElementById('winner-message');
 
 class Board {
@@ -31,7 +31,7 @@ startButton.addEventListener('click', startGame);
 resetButton.addEventListener('click', resetGame);
 
 function startGame() {
-    player1Color = player1ColorSelect.value;
+    player1Color = playerColor.value;
 
     currentPlayer = player1Color;
     colorSelection.classList.add('hidden');
@@ -80,7 +80,7 @@ function handleCellClick(event) {
     for (let row = rows - 1; row >= 0; row--) {
         if (!board[row][col]) {
             board[row][col] = currentPlayer;
-            b.board[row][col] = currentPlayer === player1Color ? 'P' : 'C'; // Mark player move in custom board
+            b.board[row][col] = currentPlayer === player1Color ? 'P' : 'C'; 
             renderBoard();
             const winner = getWinner();
             if (winner) {
@@ -109,12 +109,12 @@ function switchPlayer() {
 function computerMove() {
     if (isGameOver) return;
 
-    let col = cTurn();
-    col--; // Adjust for 0-based indexing
+    let col = cTurn(); // get computer's col choice
+    col--; 
     for (let row = rows - 1; row >= 0; row--) {
         if (!board[row][col]) {
             board[row][col] = player2Color;
-            b.board[row][col] = 'C'; // Mark computer move in custom board
+            b.board[row][col] = 'C'; 
             break;
         }
     }
