@@ -13,6 +13,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $conn->prepare('INSERT INTO entity_accounts (`Username`, `Password` ) VALUES (?,?)');
             $stmt->bind_param("ss", $Username, $Password);
             $stmt->execute();
+            header("Location: login.php");
         }
     }
 
@@ -39,6 +40,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header("Location: adminMenu.php");
             } else {
               echo "<script>console.log('Welcome!');</script>";
+              header("Location: game.php");
             }
         }
       }
