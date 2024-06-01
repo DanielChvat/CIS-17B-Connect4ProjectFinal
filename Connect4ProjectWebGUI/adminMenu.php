@@ -30,12 +30,16 @@
                 <label for="">Username</label>
                 <input type="text" id="Username" name="Username" required>
                 <label for="">Password</label>
-                <input type="text" id="Password" name="Password" required> 
+                <input type="text" id="Password" name="Password" required>  
+                <label for="">Last Name</label>
+                <input type="text" id="LastName" name="LastName" required> 
+                <label for="">First Name</label>
+                <input type="text" id="FirstName" name="FirstName" required> 
                 <label for="">Admin</label>
                 <input type="checkbox" id="isAdmin" name="isAdmin">
                 <button type="submit" class="btn" name="addUser">Add User</button>
             </div>
         </form>
-        <script src="adminmenu.js"></script>
+        <script src="adminMenu.js"></script>
 </body>
 </html>

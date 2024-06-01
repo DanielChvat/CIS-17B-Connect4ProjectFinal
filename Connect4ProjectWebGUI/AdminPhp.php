@@ -7,46 +7,148 @@ $display = 4;
 // Handle user deletion and addition
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['delete'])) {
-        $userID = $_POST['ID'];
-        $sql = "DELETE FROM entity_accounts WHERE ID = ?";
+        $userID = $_POST['UserID'];
+        
+        $sql2 = "DELETE FROM entity_admin WHERE UserID = ?";
+        $sql = "DELETE FROM login WHERE UserID = ?";
+        $sql3 = "DELETE FROM entity_accounts WHERE UserID = ?";
+        
         $stmt = $conn->prepare($sql);
         $stmt->execute([$userID]);
+        $stmt->close();
+        
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->execute([$userID]);
+        $stmt2->close();
+        
+        $stmt3 = $conn->prepare($sql3);
+        $stmt3->execute([$userID]);
+        $stmt3->close();
+        
     }
     
     elseif (isset($_POST['addUser'])) {
-        $username = $_POST['Username'];
+        $username = strtolower($_POST['Username']);
         $password = password_hash($_POST['Password'], PASSWORD_BCRYPT);
+        $LastName = $_POST['LastName'];
+        $FirstName = $_POST['FirstName'];
         $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
-        $sql = "INSERT INTO entity_accounts (Username, Password, isAdmin) VALUES (?, ?, ?)";
+        
+        $sql = "INSERT INTO entity_accounts (Username, LastName, FirstName) VALUES (?, ?, ?)";
+        $sql2 = "SELECT UserID FROM entity_accounts WHERE Username = ?";
+        $sql3 = "INSERT INTO login (UserID, Password) VALUES (?,?)";
+        
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$username, $password, $isAdmin]);
+        $stmt->bind_param("sss", $username, $LastName, $FirstName);
+        $stmt->execute();
+        $stmt->close();
+        
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->bind_param("s", $username);
+        $stmt2->execute();
+        $stmt2->store_result();
+        $stmt2->bind_result($result);
+        $stmt2->fetch();
+        $stmt2->close();
+        
+        $stmt3 = $conn->prepare($sql3);
+        $stmt3->bind_param("is", $result, $password);
+        $stmt3->execute();
+        $stmt3->close();
+        
+        
+        if($isAdmin) {
+            $role = "ADMIN";
+            $sql4 = "INSERT INTO entity_admin (UserID, Role) VALUES(?, ?)";
+            $stmt4 = $conn->prepare($sql4);
+            $stmt4->bind_param("is", $result, $role);
+            $stmt4->execute();
+            $stmt4->close();
+        }
+        
+        
+        
+        
     } 
 
     elseif (isset($_POST['editUser'])){
-        $userID = $_POST['ID'];
-        $_SESSION["ID"] = $userID;
+        $userID = $_POST['UserID'];
+        $_SESSION["UserID"] = $userID;
         header("Location: editUser.php");
     }
     
     elseif (isset($_POST['addEdit'])){
-        $userID = $_SESSION['ID'];
-        $username = $_POST['Username'];
+        $userID = $_SESSION['UserID'];
+        $username = strtolower($_POST['Username']);
+        $LastName = $_POST['LastName'];
+        $FirstName = $_POST['FirstName'];
         $password = password_hash($_POST['Password'], PASSWORD_BCRYPT);
         $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
-        $sql = "UPDATE entity_accounts SET Username = ?, Password = ?, isAdmin = ? WHERE ID = ?";
+        $sql = "UPDATE entity_accounts SET Username = ?, LastName = ?, FirstName = ? WHERE UserID = ?";
+        $sql2 = "UPDATE login SET Password = ? WHERE UserID = ?";
+        
         $stmt = $conn->prepare($sql);
-        $stmt->execute([$username, $password, $isAdmin, $userID]);
+        $stmt->bind_param("sssi", $username, $LastName, $FirstName, $userID);
+        $stmt->execute();
+        $stmt->close();
+        
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->bind_param("si", $password, $userID);
+        $stmt2->execute();
+        $stmt2->close();
+        
+        
+        if($isAdmin) {
+            
+            $sql3 = "SELECT AdminID FROM entity_admin WHERE UserID = ?";
+            
+            $stmt3 = $conn->prepare($sql3);
+            $stmt3->bind_param("i", $userID);
+            $stmt3->execute();
+            $stmt3->store_result();
+            
+            if($stmt3->num_rows() >0) {
+                
+            }
+            else {
+                
+                $result = $_SESSION['UserID'];
+                $role = "ADMIN";
+                $sql4 = "INSERT INTO entity_admin (UserID, Role) VALUES(?, ?)";
+                $stmt4 = $conn->prepare($sql4);
+                $stmt4->bind_param("is", $result, $role);
+                $stmt4->execute();
+                $stmt4->close();
+            }
+            
+            $stmt3->close();
+            
+        }
+        
+        else {
+            $sql3 = "SELECT AdminID FROM entity_admin WHERE UserID = ?";
+            
+            $stmt3 = $conn->prepare($sql3);
+            $stmt3->bind_param("i", $userID);
+            $stmt3->execute();
+            $stmt3->store_result();
+            
+            if($stmt3->num_rows >0) {
+                $sql4 = "DELETE FROM entity_admin WHERE UserID = ?";
+                $stmt4 = $conn->prepare($sql4);
+                $stmt4->bind_param("i", $userID);
+                $stmt4->execute();
+                $stmt4->close();
+            }
+            
+            $stmt3->close();
+            
+        }
+        
+        unset($_SESSION['UserID']);
         header("Location: adminMenu.php");
     }
 }
-
-
-
-
-
-
-
-
 
 //function
 
@@ -71,7 +173,7 @@ $offset = ($currentPage -1) * $display;
 
 
 // Fetch users from the database
-$sql = "SELECT ID, Username, Password, isAdmin, Wins FROM entity_accounts LIMIT $display OFFSET $offset";
+$sql = "SELECT UserID, Username, LastName, FirstName, Wins FROM entity_accounts LIMIT $display OFFSET $offset";
 $users = $conn->query($sql);
 
 $userArray = array();

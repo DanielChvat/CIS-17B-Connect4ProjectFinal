@@ -25,6 +25,10 @@
                 <input type="text" id="Username" name="Username" required>
                 <label for="">New Password</label>
                 <input type="text" id="Password" name="Password" required> 
+                <label for="">New Last Name</label>
+                <input type="text" id="LastName" name="LastName" required> 
+                <label for="">New First Name</label>
+                <input type="text" id="FirstName" name="FirstName" required>
                 <label for="">Admin</label>
                 <input type="checkbox" id="isAdmin" name="isAdmin">
                 <button type="submit" class="btn" name="addEdit">Confirm</button>

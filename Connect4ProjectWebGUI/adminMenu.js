@@ -83,9 +83,9 @@ function displayUsers(userArray){
 
             const userInput = document.createElement('input');
             userInput.type = 'hidden';
-            userInput.name = 'ID';
-            userInput.id = 'ID';
-            userInput.value = userArray[i]['ID'];
+            userInput.name = 'UserID';
+            userInput.id = 'UserID';
+            userInput.value = userArray[i]['UserID'];
 
 
 
