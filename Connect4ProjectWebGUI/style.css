@@ -1,64 +1,64 @@
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #f0f0f0;
 }
 
 #game-board {
-  display: grid;
-  grid-template-columns: repeat(7, 60px);
-  gap: 5px;
-  justify-content: center;
-  margin: 20px auto;
-  background-color: #000; 
-  padding: 5px; 
-  border-radius: 10px;
-  width: fit-content; 
+    display: grid;
+    grid-template-columns: repeat(7, 60px);
+    gap: 5px;
+    justify-content: center;
+    margin: 20px auto;
+    background-color: #000;
+    padding: 5px;
+    border-radius: 10px;
+    width: fit-content;
 }
 
 .cell {
-  width: 60px;
-  height: 60px;
-  background-color: #fff;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
 }
 
 .cell.red {
-  background-color: red;
+    background-color: red;
 }
 
 .cell.yellow {
-  background-color: yellow;
+    background-color: yellow;
 }
 
 .cell.blue {
-  background-color: blue;
+    background-color: blue;
 }
 
 .cell.green {
-  background-color: green;
+    background-color: green;
 }
 
 button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+    padding: 20px 20px;
+    font-size: 16px;
+    cursor: pointer;
 }
 
 #winner-message {
-  margin: 20px auto;
-  font-size: 24px;
-  font-weight: bold;
+    margin: 20px auto;
+    font-size: 24px;
+    font-weight: bold;
 }
 
 #color-selection {
-  margin: 20px auto;
+    margin: 20px auto;
 }
 
 .hidden {
-  display: none;
+    display: none;
 }

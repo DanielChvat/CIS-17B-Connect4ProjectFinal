@@ -28,7 +28,7 @@ class Board {
         return this.grid[0][col] !== null;
     }
 }
-// Model 
+
 class GameModel {
     constructor() {
         this.board = new Board();
@@ -36,6 +36,7 @@ class GameModel {
         this.p2 = new Player('Computer', 'yellow');
         this.currP = null;
         this.isOver = false;
+        this.moves = this.loadMoves() || [];
     }
 
     reset() {
@@ -43,14 +44,24 @@ class GameModel {
         this.p1 = null;
         this.currP = null;
         this.isOver = false;
+        this.moves = [];
+        this.saveMoves();
+    }
+
+    saveMoves() {
+        localStorage.setItem('moves', JSON.stringify(this.moves));
+    }
+
+    loadMoves() {
+        return JSON.parse(localStorage.getItem('moves'));
     }
 
     checkWin() {
         const dirs = [
-            { dr: 0, dc: 1 },  // horizontal
-            { dr: 1, dc: 0 },  // vertical
-            { dr: 1, dc: 1 },  // diagonal down right
-            { dr: 1, dc: -1 }  // diagonal down-left
+            { dr: 0, dc: 1 },
+            { dr: 1, dc: 0 },
+            { dr: 1, dc: 1 },
+            { dr: 1, dc: -1 }
         ];
 
         for (let row = 0; row < this.board.rows; row++) {
@@ -91,12 +102,12 @@ class GameModel {
     }
 }
 
-// View 
 class View {
     constructor() {
         this.boardEl = document.getElementById('game-board');
         this.resetBtn = document.getElementById('reset-button');
         this.startBtn = document.getElementById('start-button');
+        this.undoBtn = document.getElementById('undo-button');
         this.colorSel = document.getElementById('color-selection');
         this.p1Color = document.getElementById('player1-color');
         this.winMsg = document.getElementById('winner-message');
@@ -160,9 +171,16 @@ class View {
     hideColorSel() {
         this.colorSel.classList.add('hidden');
     }
+
+    showUndo() {
+        this.undoBtn.style.display = 'block';
+    }
+
+    hideUndo() {
+        this.undoBtn.style.display = 'none';
+    }
 }
 
-// Controller
 class Controller {
     constructor(model, view) {
         this.model = model;
@@ -170,6 +188,7 @@ class Controller {
 
         this.view.startBtn.addEventListener('click', () => this.startGame());
         this.view.resetBtn.addEventListener('click', () => this.resetGame());
+        this.view.undoBtn.addEventListener('click', () => this.undoMove());
         this.view.boardEl.addEventListener('click', (event) => this.cellClick(event));
     }
 
@@ -180,6 +199,7 @@ class Controller {
         this.view.hideColorSel();
         this.view.showBoard();
         this.view.showReset();
+        this.view.showUndo();
         this.view.hideMsg();
         this.model.board.reset();
         this.view.initBoard(this.model.board.rows, this.model.board.cols);
@@ -190,6 +210,7 @@ class Controller {
         this.view.showColorSel();
         this.view.hideBoard();
         this.view.hideReset();
+        this.view.hideUndo();
         this.view.hideMsg();
         this.model.reset();
         this.view.renderBoard(this.model.board.grid);
@@ -203,6 +224,8 @@ class Controller {
 
         const move = this.dropChip(col);
         if (move) {
+            this.model.moves.push(move);
+            this.model.saveMoves();
             this.view.renderBoard(this.model.board.grid);
             const winner = this.model.checkWin();
             if (winner) {
@@ -223,7 +246,7 @@ class Controller {
         for (let row = this.model.board.rows - 1; row >= 0; row--) {
             if (!this.model.board.grid[row][col]) {
                 this.model.board.grid[row][col] = this.model.currP.color;
-                return { row, col };
+                return { row, col, color: this.model.currP.color };
             }
         }
         return null;
@@ -238,21 +261,28 @@ class Controller {
 
     computerMove() {
         if (this.model.isOver) return;
-        let col = this.cTurn(); // get computer's col choice
-        this.dropChip(col);
-        this.view.renderBoard(this.model.board.grid);
-        const winner = this.model.checkWin();
-        if (winner) {
-            this.view.showMsg(`${this.model.p2.name}: ${winner.toUpperCase()} wins!`);
-            this.model.isOver = true;
-            return;
+        let col = this.cTurn();
+        while (this.model.board.isColumnFull(col)) {
+            col = this.cTurn();
         }
-        if (this.model.board.isFull()) {
-            this.view.showMsg('It\'s a draw!');
-            this.model.isOver = true;
-            return;
+        const move = this.dropChip(col);
+        if (move) {
+            this.model.moves.push(move);
+            this.model.saveMoves();
+            this.view.renderBoard(this.model.board.grid);
+            const winner = this.model.checkWin();
+            if (winner) {
+                this.view.showMsg(`${this.model.p2.name}: ${winner.toUpperCase()} wins!`);
+                this.model.isOver = true;
+                return;
+            }
+            if (this.model.board.isFull()) {
+                this.view.showMsg('It\'s a draw!');
+                this.model.isOver = true;
+                return;
+            }
+            this.switchPlayer();
         }
-        this.switchPlayer();
     }
 
     cTurn() {
@@ -451,9 +481,19 @@ class Controller {
         }
         return -1;
     }
+
+    undoMove() {
+        if (this.model.moves.length >= 2) {
+            const lastMove = this.model.moves.pop();
+            const scndLstMove = this.model.moves.pop();
+            this.model.board.grid[lastMove.row][lastMove.col] = null;
+            this.model.board.grid[scndLstMove.row][scndLstMove.col] = null;
+            this.model.saveMoves();
+            this.view.renderBoard(this.model.board.grid);
+        }
+    }
 }
 
-// Initialize the game
 document.addEventListener('DOMContentLoaded', () => {
     const model = new GameModel();
     const view = new View();

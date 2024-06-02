@@ -23,6 +23,8 @@
   <div id="game-board" style="display: none;"></div>
   <div id="winner-message" style="display: none;"></div>
   <button id="reset-button" style="display: none;">Reset Game</button>
+  <br>
+  <button id="undo-button" style="display: none;">Undo Move</button>
   <script src="game.js"></script>
 </body>
 </html>
