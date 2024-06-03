@@ -41,7 +41,7 @@ if (isset($_POST['action']) && $_POST['action'] == 'sendWinner') {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-  <h1>Connect Four</h1>
+  <!-- <h1>Connect Four</h1> -->
   <div id="color-selection">
     <h2>Select Player 1 Color</h2>
     <div>
@@ -57,9 +57,9 @@ if (isset($_POST['action']) && $_POST['action'] == 'sendWinner') {
   <div id="game-board" style="display: none;"></div>
   <div id="winner-message" style="display: none;"></div>
   <button id="reset-button" style="display: none;">Reset Game</button>
+  <br>
+  <button id="undo-button" style="display: none;">Undo Move</button>
   <script src="game.js"></script>
-  
 </body>
 </html>
-
 
