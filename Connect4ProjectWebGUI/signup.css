@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@691&family=Lalezar&display=swap');
+
+body {
+    background-color: #A6DDFF;
+    background-image: url('images/boardbg.png');
+    height: 100vh;
+    width: auto;
+    align-items: center;
+    justify-content: center;
+    display:flex;
+    margin:0;
+    padding:0;
+    overflow: hidden;
+}
+
+button {
+    margin: 0 2em;
+    padding: 0.5em 1.4em;
+    background: #FFFEFE;
+    border-radius:20px;
+    font-weight: bold;
+    color:#E65BFF;
+    border:none;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.6rem;
+    text-align: center;
+}
+
+button:hover {
+    cursor: pointer;
+    background-color: #E65BFF;
+    color: #FFFEFE;
+}
+
+.heading h1{
+    font-family: 'Lalezar', system-ui;
+    font-style: normal;
+    color: #E65BFF;
+    text-shadow: 
+        -2px -2px 0 #FFFFFF,
+        2px -2px 0 #FFFFFF,
+        -2px 2px 0 #FFFFFF,
+        2px 2px 0 #FFFFFF;
+    text-align: center;
+    font-size: 100px;
+    margin:0;
+    padding:0;
+}
+
+.form-group{
+    display: flex;
+    margin: 0 3rem 3rem 3rem;
+    padding: 1rem 1rem 2rem 1rem;
+    background-color: #E65BFF;
+    flex-direction:column;
+    gap:25px;
+    border-radius:25px;
+    box-shadow: 0 4px 35px rgba(0, 0, 0, 4)
+}
+
+.username, .pass{
+    display: flex;
+    flex-direction:column;
+    font-size: 30px;
+    align-items: center;
+}
+
+label {
+    font-size: 30px;
+    font-family: 'Inter', sans-serif;
+    color: #FBFBFB;
+}
+
+input[type="text"]{
+    width: 70%;
+    margin-top: 10px;;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 40px;
+}
+
+.group2{
+    display:flex;
+    justify-content: center;
+}
