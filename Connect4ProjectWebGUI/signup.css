@@ -1,8 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@691&family=Lalezar&display=swap');
 
+<<<<<<< HEAD
 body {
     background-color: #A6DDFF;
     background-image: url('images/boardbg.png');
+=======
+html {
+    background-color: #A6DDFF;
+    background-image: url('images/boardbg.png');
+    background-size: cover;
+}
+
+body {
+>>>>>>> login
     height: 100vh;
     width: auto;
     align-items: center;
