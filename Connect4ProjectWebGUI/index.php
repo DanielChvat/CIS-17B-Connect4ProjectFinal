@@ -22,10 +22,12 @@
     <div class="menu_container">
         <h1 class="title">CONNECT4</h1>
         <div class="menu_buttons">
-            <button><a href = "signup.php">Sign Up</a></button>
-            <button><a href = "login.php">Login</a></button>
+            <a href = "signup.php"><button>Sign Up</button></a>
+            <a href = "login.php"><button>Log In</button></a>
+        </div>
+        <div class="footer">
+            <h3>Click here if you are an <a href='adminMenu.php'><strong> admin</strong></a>.</h3>
         </div>
     </div>
-    <div class="background_clouds"></div>
 </body>
 </html>
