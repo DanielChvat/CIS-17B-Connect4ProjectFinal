@@ -169,7 +169,11 @@ class View {
     showMsg(msg) {
         this.winMsg.textContent = msg;
         this.winMsg.style.display = 'block';
+        this.winMsg.style.margin ="5px";
+
+        
     }
+
 
     hideMsg() {
         this.winMsg.style.display = 'none';
@@ -185,6 +189,8 @@ class View {
 
     showReset() {
         this.resetBtn.style.display = 'block';
+   
+
     }
 
     hideReset() {
@@ -201,11 +207,14 @@ class View {
 
     showUndo() {
         this.undoBtn.style.display = 'block';
+        document.getElementById("undo-button").style.width = "150px";
+    
     }
 
     hideUndo() {
         this.undoBtn.style.display = 'none';
     }
+  
 }
 
 class Controller {
@@ -231,6 +240,12 @@ class Controller {
         this.model.board.reset();
         this.view.initBoard(this.model.board.rows, this.model.board.cols);
         this.view.renderBoard(this.model.board.grid);
+
+        document.querySelector('.turns-container .container-player').style.boxShadow = "0 0 5px 10px #8200ce inset";
+
+        document.querySelector('.turns-container .container-com').style.boxShadow = "none";
+
+
     }
 
     resetGame() {
@@ -243,28 +258,48 @@ class Controller {
         this.view.renderBoard(this.model.board.grid);
     }
 
+  
+
     cellClick(event) {
 
-        // const playerStyle = 
-        // `.turns-container .container-player{
-        //     background-color: #C051FF;
-        //     border-radius:5px;
-        //     box-shadow: 0 0 5px 10px #8200ce inset;
-        // }`;
+        // if (!this.model.checkWin()) {
+        //     if (document.querySelector('.turns-container .container-player').style.boxShadow === "none") {
+        //         document.querySelector('.turns-container .container-player').style.boxShadow = "0 0 5px 10px #8200ce inset";
+        //     } else {
+        //         document.querySelector('.turns-container .container-player').style.boxShadow = "none";
+        //     }
+        // } else {
+        //     document.querySelector('.turns-container .container-player').style.boxShadow = "none";
+        // }
+
+        //WITHOUT CHECKING WINS
+        // if (document.querySelector('.turns-container .container-player').style.boxShadow === "none") {
+        //         document.querySelector('.turns-container .container-player').style.boxShadow = "0 0 5px 10px #8200ce inset";
+        // } else {
+        //     document.querySelector('.turns-container .container-player').style.boxShadow = "none";
+        // }
+        
+
 
         if (this.model.isOver || !event.target.classList.contains('cell')) return;
 
         const col = parseInt(event.target.dataset.col, 10);
         if (this.model.board.isColumnFull(col)) return;
 
+
         const move = this.dropChip(col);
         if (move) {
+     
+
+
             this.model.moves.push(move);
             this.model.saveMoves();
             this.view.renderBoard(this.model.board.grid);
             const winner = this.model.checkWin();
             if (winner) {
                 this.view.showMsg(`${this.model.getWinName()}: ${winner.toUpperCase()} wins!`);
+
+
                 this.model.isOver = true;
                 return;
             }
@@ -272,15 +307,22 @@ class Controller {
                 this.view.showMsg('It\'s a draw!');
                 this.model.isOver = true;
                 return;
-            }
+            } 
             
-            // if (this.model.currentPlayer === 1) {
-            //     this.view.applyCSS(playerStyle);
-            // }
-
+            //UNCOMMENT
+            // document.querySelector('.turns-container .container-com').style.boxShadow = "0 0 5px 10px #003ba9 inset";
+            
+            
             this.switchPlayer();
         }
+        
     }
+
+
+
+     
+
+
 
     dropChip(col) {
         for (let row = this.model.board.rows - 1; row >= 0; row--) {
@@ -294,6 +336,20 @@ class Controller {
 
     switchPlayer() {
         this.model.currP = this.model.currP === this.model.p1 ? this.model.p2 : this.model.p1;
+
+      
+
+        if (!this.model.checkWin()) {
+            if (this.model.currP === this.model.p1) {
+                document.querySelector('.turns-container .container-com').style.boxShadow = "none";
+                document.querySelector('.turns-container .container-player').style.boxShadow = "0 0 5px 10px #8200ce inset";
+                
+            } else  {
+                document.querySelector('.turns-container .container-player').style.boxShadow = "none";
+                document.querySelector('.turns-container .container-com').style.boxShadow = "0 0 5px 10px #003ba9 inset";
+            }
+        }
+
         if (this.model.currP === this.model.p2) {
             setTimeout(() => this.computerMove(), 850);
         }
@@ -301,6 +357,12 @@ class Controller {
 
     computerMove() {
 
+        // if (document.querySelector('.turns-container .container-com').style.boxShadow === "0 0 5px 10px #003ba9 inset") {
+        //     document.querySelector('.turns-container .container-player').style.boxShadow = "none";
+        //     document.querySelector('.turns-container .container-com').style.boxShadow = "none";
+        // } else {
+        //     document.querySelector('.turns-container .container-com').style.boxShadow = "none";
+        // } 
 
 
         if (this.model.isOver) return;
@@ -316,7 +378,12 @@ class Controller {
             this.view.renderBoard(this.model.board.grid);
             const winner = this.model.checkWin();
             if (winner) {
+     
                 this.view.showMsg(`${this.model.p2.name}: ${winner.toUpperCase()} wins!`);
+
+             
+
+
                 this.model.isOver = true;
                 return;
             }
@@ -325,6 +392,11 @@ class Controller {
                 this.model.isOver = true;
                 return;
             }
+
+            //UNCOMMENT
+            // document.querySelector('.turns-container .container-player').style.boxShadow = "0 0 5px 10px #8200ce inset";
+
+
             this.switchPlayer();
         }
     }

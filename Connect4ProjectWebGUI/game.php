@@ -57,20 +57,25 @@ if (isset($_POST['action']) && $_POST['action'] == 'sendWinner') {
   </div>
   <button id="start-button">Start Game</button>
 </div>
+
 <div class="turns-container">
   <h3>Turns</h3>
-  <div class="container-com"><p>Computer</p></div>
-  <div class="container-player"><p>Player</p></div>
-  
+  <div class="container-com">
+    <p>Computer</p>
+  </div>
+  <div class="container-player">
+    <p>Player</p>
+  </div>
+
 </div>
 
 <div id="game-board" style="display: none;"></div>
-  <div id="winner-message" style="display: none;"></div>
-  <div class="options">
-    <button id="reset-button" style="display: none;">Reset Game</button>
-    <br>
-    <button id="undo-button" style="display: none;">Undo Move</button>
-  </div>
+<div id="winner-message" style="display: none;"></div>
+<div class="options">
+  <button id="reset-button" style="display: none;" width="50px">Reset Game</button>
+  <br>
+  <button id="undo-button" style="display: none;" width="50px">Undo Move</button>
+</div>
 
 <script src="game.js"></script>
 </body>

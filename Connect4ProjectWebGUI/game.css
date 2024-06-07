@@ -28,7 +28,7 @@ html {
     grid-template-columns: repeat(7, 60px);
     gap: 5px;
     justify-content: center;
-    margin: 20vh auto;
+    margin: 10vh auto;
     background-color: #000000;
     padding: 5px;
     border-radius: 10px;
@@ -172,16 +172,20 @@ button:hover {
 }
   
 .options{
+
     display: inline;
+    margin-bottom: 5px;
+
 }
 
 .turns-container {
-    position: absolute;
+    position: fixed;
     margin-inline-start: 0;
     font-size: 20px;
     align-items: left;
-    padding-left: 2rem;
-    text-align: left;
+    /* padding-left: 2rem; */
+    text-align: center;
+    margin: 0;
 }
 
 .turns-container h3 {
@@ -198,7 +202,12 @@ button:hover {
 
 .turns-container .container-com{
     background-color: #1565F8;
-    border-radius: 10px;
+    box-shadow: none;
+    /* border-radius: 10px; */
+    border-radius: 0 17px 17px 0;
+    width: 170px;
+ 
+    
 }
 
 .turns-container p{
@@ -208,7 +217,11 @@ button:hover {
 
 .turns-container .container-player{
     background-color: #C051FF;
-    border-radius: 10px;
+    /* border-radius: 10px; */
+    border-radius: 0 17px 17px 0;
+    width: 170px;
+    
+
 }
 
 /* .container-player.player {
