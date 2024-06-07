@@ -14,18 +14,11 @@ echo "<script>console.log('Current User: " . $_SESSION['Username'] . "' );</scri
 if (isset($_POST['action']) && $_POST['action'] == 'sendWinner') {
   $winner = isset($_POST['data']) ? $_POST['data'] : 'no winner';
 
-
-
-
-
-
   if ($winner != "Computer") {
 
     $sql = "UPDATE entity_accounts SET Wins = Wins+1 WHERE Username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->execute([$_SESSION['Username']]);
-
-
   }
 }
 
@@ -51,27 +44,35 @@ if (isset($_POST['action']) && $_POST['action'] == 'sendWinner') {
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
-  <!-- <h1>Connect Four</h1> -->
-  <div id="color-selection" class="container">
-    <h2>Select Your Color</h2>
-    <div>
-      <label for="player1-color">Player 1 Color:</label>
-      <select id="player1-color">
-        <option value="red">Red</option>
-        <option value="blue">Blue</option>
-        <option value="green">Green</option>
-      </select>
-    </div>
-    <button id="start-button">Start Game</button>
+<!-- <h1>Connect Four</h1> -->
+<div id="color-selection" class="container">
+  <h2>Select Your Color</h2>
+  <div>
+    <label for="player1-color">Player 1 Color:</label>
+    <select id="player1-color">
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+    </select>
   </div>
-  <div id="game-board" style="display: none;"></div>
+  <button id="start-button">Start Game</button>
+</div>
+<div class="turns-container">
+  <h3>Turns</h3>
+  <div class="container-com"><p>Computer</p></div>
+  <div class="container-player"><p>Player</p></div>
+  
+</div>
+
+<div id="game-board" style="display: none;"></div>
   <div id="winner-message" style="display: none;"></div>
   <div class="options">
     <button id="reset-button" style="display: none;">Reset Game</button>
     <br>
     <button id="undo-button" style="display: none;">Undo Move</button>
   </div>
-  <script src="game.js"></script>
+
+<script src="game.js"></script>
 </body>
 
 </html>

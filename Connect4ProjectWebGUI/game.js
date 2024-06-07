@@ -244,6 +244,14 @@ class Controller {
     }
 
     cellClick(event) {
+
+        // const playerStyle = 
+        // `.turns-container .container-player{
+        //     background-color: #C051FF;
+        //     border-radius:5px;
+        //     box-shadow: 0 0 5px 10px #8200ce inset;
+        // }`;
+
         if (this.model.isOver || !event.target.classList.contains('cell')) return;
 
         const col = parseInt(event.target.dataset.col, 10);
@@ -265,6 +273,11 @@ class Controller {
                 this.model.isOver = true;
                 return;
             }
+            
+            // if (this.model.currentPlayer === 1) {
+            //     this.view.applyCSS(playerStyle);
+            // }
+
             this.switchPlayer();
         }
     }
@@ -287,6 +300,9 @@ class Controller {
     }
 
     computerMove() {
+
+
+
         if (this.model.isOver) return;
         let col = this.cTurn();
         while (this.model.board.isColumnFull(col)) {
@@ -294,6 +310,7 @@ class Controller {
         }
         const move = this.dropChip(col);
         if (move) {
+            
             this.model.moves.push(move);
             this.model.saveMoves();
             this.view.renderBoard(this.model.board.grid);
