@@ -1,7 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: "Lalezar";
     text-align: center;
-    background-color: #f0f0f0;
+
+    height: 100vh;
+    width: 100vw;
+    display: block;
+    grid-template-columns: max-content auto;
+    align-items: center;
+    z-index: 1;
+
+    margin-left: auto;
+    margin-right: auto;
+}
+
+html {
+    background-image: url("images/gamebg.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    overflow: hidden;
 }
 
 #game-board {
@@ -22,6 +41,16 @@ body {
 
 }
 
+.container {
+    position: static;
+    align-self: center;
+    margin-top: 250px;
+    margin-bottom: 250px;
+    /* margin-top: auto; */
+    
+}
+
+
 .cell {
     width: 60px;
     height: 60px;
@@ -39,10 +68,42 @@ body {
     
 }
 
+#player1-color {
+    font-family: "Inter";
 
+    height: 40px;
+    width: 100px;
+    font-size: 20px;
+    border: none;
+    background-color: white;
+    
+    margin: 20px;
+}
 
+h2 {
+    font-size: 4em;
+    margin: 0;
+}
 
+#start-button {
+    font-family: "Lalezar";
+    font-size: 30px;
+}
 
+#start-button:hover {
+    color: #FCC634;
+    background-color: #1565F8;
+}
+
+label {
+    font-size: 20px;
+    font-family: "Inter";
+    font-weight: bold;
+}
+
+.options {
+
+}
 
 
 .cell.red {
@@ -73,40 +134,13 @@ button {
     font-weight: bold;
 }
 
-#color-selection {
-    margin: 20px auto;
-}
-
 .hidden {
     display: none;
 }
 
-html, 
-body {
-    margin: 0
-}
-
-body {
-    background: linear-gradient(180deg, #039FFF 0%, #5CC1FF 38%, #A6DDFF 76%);
-    height: 100vh;
-    width: 100vw;
-    display: grid;
-    grid-template-columns: max-content auto;
-    align-items: center;
-    z-index: 1;
-}
-
-.menu_container {
-    display: grid;
-    justify-items: center;
-    align-items: center;
-
-    margin-bottom: 100px;
-}
-
 .title {
     margin: 0;
-    font-family: 'Lalezar';
+    font-family: "Lalezar";
     font-style: normal;
     font-size: 11em;
     line-height: 1.25;
@@ -127,14 +161,14 @@ body {
 
 button {
     margin: 0 2em;
-    padding: 0.5em 1.4em;
+    padding: 0.3em 1rem;
 
     background: #FCC634;
     border: 3px solid #1565F8;
     border-radius: 20px;
 
     font-family: 'Inter';
-    font-size: 1.6em;
+    font-size: 20px;
     text-align: center;
 }
 button:hover {
@@ -147,3 +181,10 @@ button:hover {
     max-height: 95vh;
     box-sizing: border-box;
 }
+
+.lalezar-regular {
+    font-family: "Lalezar", system-ui;
+    font-weight: 400;
+    font-style: normal;
+  }
+  

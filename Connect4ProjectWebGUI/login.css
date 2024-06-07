@@ -1,8 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@691&family=Lalezar&display=swap');
 
-body {
+html {
     background-color: #A6DDFF;
     background-image: url('images/boardbg.png');
+    background-size: cover;
+}
+
+body {
     height: 100vh;
     width: auto;
     align-items: center;
