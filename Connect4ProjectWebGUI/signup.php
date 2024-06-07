@@ -10,7 +10,7 @@
 
 <div class="signup-container">
     <?php include "signup-loginmethod.php" ?>
-     <form method = "POST">
+    <form method = "POST">
         <div class="heading">
             <h1>welcome to connect!</h1>
         </div>
