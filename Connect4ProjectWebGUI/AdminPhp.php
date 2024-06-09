@@ -2,15 +2,15 @@
 session_start();
 
 require 'dbconnect.php';
-$display = 4;
+$display = 20;
 
 // Handle user deletion and addition
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['delete'])) {
         $userID = $_POST['UserID'];
         
-        $sql2 = "DELETE FROM entity_admin WHERE UserID = ?";
-        $sql = "DELETE FROM login WHERE UserID = ?";
+        $sql2 = "DELETE FROM xref_admin WHERE UserID = ?";
+        $sql = "DELETE FROM enum_login WHERE UserID = ?";
         $sql3 = "DELETE FROM entity_accounts WHERE UserID = ?";
         
         $stmt = $conn->prepare($sql);
@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $sql = "INSERT INTO entity_accounts (Username, LastName, FirstName) VALUES (?, ?, ?)";
         $sql2 = "SELECT UserID FROM entity_accounts WHERE Username = ?";
-        $sql3 = "INSERT INTO login (UserID, Password) VALUES (?,?)";
+        $sql3 = "INSERT INTO enum_login (UserID, Password) VALUES (?,?)";
         
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sss", $username, $LastName, $FirstName);
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if($isAdmin) {
             $role = "ADMIN";
-            $sql4 = "INSERT INTO entity_admin (UserID, Role) VALUES(?, ?)";
+            $sql4 = "INSERT INTO xref_admin (UserID, Role) VALUES(?, ?)";
             $stmt4 = $conn->prepare($sql4);
             $stmt4->bind_param("is", $result, $role);
             $stmt4->execute();
@@ -85,7 +85,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $password = password_hash($_POST['Password'], PASSWORD_BCRYPT);
         $isAdmin = isset($_POST['isAdmin']) ? 1 : 0;
         $sql = "UPDATE entity_accounts SET Username = ?, LastName = ?, FirstName = ? WHERE UserID = ?";
-        $sql2 = "UPDATE login SET Password = ? WHERE UserID = ?";
+        $sql2 = "UPDATE enum_login SET Password = ? WHERE UserID = ?";
         
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("sssi", $username, $LastName, $FirstName, $userID);
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         if($isAdmin) {
             
-            $sql3 = "SELECT AdminID FROM entity_admin WHERE UserID = ?";
+            $sql3 = "SELECT AdminID FROM xref_admin WHERE UserID = ?";
             
             $stmt3 = $conn->prepare($sql3);
             $stmt3->bind_param("i", $userID);
@@ -114,7 +114,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 
                 $result = $_SESSION['UserID'];
                 $role = "ADMIN";
-                $sql4 = "INSERT INTO entity_admin (UserID, Role) VALUES(?, ?)";
+                $sql4 = "INSERT INTO xref_admin (UserID, Role) VALUES(?, ?)";
                 $stmt4 = $conn->prepare($sql4);
                 $stmt4->bind_param("is", $result, $role);
                 $stmt4->execute();
@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         
         else {
-            $sql3 = "SELECT AdminID FROM entity_admin WHERE UserID = ?";
+            $sql3 = "SELECT AdminID FROM xref_admin WHERE UserID = ?";
             
             $stmt3 = $conn->prepare($sql3);
             $stmt3->bind_param("i", $userID);
@@ -134,7 +134,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt3->store_result();
             
             if($stmt3->num_rows >0) {
-                $sql4 = "DELETE FROM entity_admin WHERE UserID = ?";
+                $sql4 = "DELETE FROM xref_admin WHERE UserID = ?";
                 $stmt4 = $conn->prepare($sql4);
                 $stmt4->bind_param("i", $userID);
                 $stmt4->execute();

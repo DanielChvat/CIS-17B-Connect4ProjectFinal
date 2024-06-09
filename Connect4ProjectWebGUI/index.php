@@ -16,8 +16,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect4</title>
+    <?php
+        session_start();
+    ?>
+    <script>
+        
+        function checkCookie() {
+            var username = getCookie("user");
+            if (username != "") {
+             
+                alert("Welcome back, " + username + "!");
+                
+                window.location.href ="game.php";
+            }
+        }
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+    </script>
 </head>
-<body>
+<body onload="checkCookie()">
     <img class="board_main_menu" src="board_main_menu.svg"></img>
     <div class="menu_container">
         <h1 class="title">CONNECT4</h1>

@@ -10,36 +10,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect4</title>
+    <link rel="stylesheet" href="adminmenu.css">
 </head>
 <body>
     <?php include 'AdminPhp.php' ?>
     <div class="admin-container">
         <h1>ADMIN PAGE</h1>
-        <a href="login.php">Home <i class="fa fa-home"></i></a>
-        <button id="edit-button">Edit <i class="fa fa-pencil"></i></button>
+        <a href="gameAdmin.php" class="home-button">Home <i class="fa fa-home"></i></a>
+        <button id="edit-button" class="edit-button">Edit <i class="fa fa-pencil"></i></button>
         <div class="users-container">
             <ul id="user-list"></ul>
         </div>
         <div class="admin-menu-buttons">
-            <button id="left-arrow"><</button>
+            <button id="left-arrow" class="nav-button"><</button>
             <label id="pageNum">1</label>
-            <button id="right-arrow">></button>
+            <button id="right-arrow" class="nav-button">></button>
         </div>
-        <form method = "POST">
+        <form method="POST" class="user-form">
             <div class="form-group">
-                <label for="">Username</label>
+                <label for="Username">Username</label>
                 <input type="text" id="Username" name="Username" required>
-                <label for="">Password</label>
+                <label for="Password">Password</label>
                 <input type="text" id="Password" name="Password" required>  
-                <label for="">Last Name</label>
+                <label for="LastName">Last Name</label>
                 <input type="text" id="LastName" name="LastName" required> 
-                <label for="">First Name</label>
+                <label for="FirstName">First Name</label>
                 <input type="text" id="FirstName" name="FirstName" required> 
-                <label for="">Admin</label>
+                <label for="isAdmin">Admin</label>
                 <input type="checkbox" id="isAdmin" name="isAdmin">
                 <button type="submit" class="btn" name="addUser">Add User</button>
             </div>
         </form>
+        <form action="fillUsers.php" method="post" class="generate-users-form">
+            <button type="submit" class="btn">Generate Users</button>
+        </form>
         <script src="adminMenu.js"></script>
+    </div>
 </body>
 </html>

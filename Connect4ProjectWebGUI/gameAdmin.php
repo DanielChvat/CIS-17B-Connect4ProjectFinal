@@ -86,6 +86,10 @@ if (isset($_POST['action']) && $_POST['action'] == 'sendWinner') {
         <button id="lb-button" type="submit" >Leaderboard</button>
     </form>
     
+    <form action="adminMenu.php" method="post">
+        <button id="admin-button" type="submit" >Admin Menu</button>
+    </form>
+    
     <form action="logout.php" method="post">
         <button id="logout-button" type="submit" >Logout</button>
     </form>

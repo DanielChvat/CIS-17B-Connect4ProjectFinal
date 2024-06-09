@@ -9,6 +9,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $Username = strtolower($_POST['Username']); // converting username to lowercase for case-insensitive design
             $optionsBC = ['cost' => 10];
             $Password = password_hash($_POST['Password'], PASSWORD_BCRYPT, $optionsBC);
+            $lastname = ucwords(strtolower(trim($_POST['Lastname'])));
+            $firstname = ucwords(strtolower(trim($_POST['Firstname'])));
             
             $sql = $conn->prepare('SELECT Username FROM entity_accounts WHERE Username = ?');
             $sql->bind_param('s', $Username);
@@ -24,8 +26,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             else {
                 
-                $stmt = $conn->prepare('INSERT INTO entity_accounts (`Username`) VALUES (?)');
-                $stmt->bind_param("s", $Username);
+                $stmt = $conn->prepare('INSERT INTO entity_accounts (Username, LastName, FirstName) VALUES (?, ?, ?)');
+                $stmt->bind_param("sss", $Username, $lastname, $firstname);
                 $stmt->execute();
                 $stmt->close();
                 
@@ -39,7 +41,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 
 
-                $stmt3 = $conn->prepare('INSERT INTO login (UserID, Password) VALUES (?, ?)');
+                $stmt3 = $conn->prepare('INSERT INTO enum_login (UserID, Password) VALUES (?, ?)');
                 $stmt3->bind_param("is", $result, $Password);
                 $stmt3->execute();
                 $stmt3->close();
@@ -71,7 +73,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
             
             
-            $stmt2 = $conn->prepare('SELECT Password FROM login WHERE UserID = ?');
+            $stmt2 = $conn->prepare('SELECT Password FROM enum_login WHERE UserID = ?');
             $stmt2->bind_param('i',$userID);
             $stmt2->execute();
             $stmt2->store_result();
@@ -83,14 +85,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             $_SESSION['Username'] = $Username;
             echo "<script>console.log('Login successful!');</script>";
             
-            $stmt = $conn->prepare("SELECT adminID FROM entity_admin WHERE UserID = ?");
+            
+            setcookie("user", $Username, time() + (86400 * 30), "/"); 
+            
+            
+            $stmt = $conn->prepare("SELECT adminID FROM xref_admin WHERE UserID = ?");
             $stmt->bind_param('i', $userID);
             $stmt->execute();
             $stmt->store_result();
             
             if($stmt->num_rows > 0) {
                 echo "<script>console.log('Welcome Admin!');</script>";
-                header("Location: adminMenu.php");
+                header("Location: gameAdmin.php");
             }
             
             else {

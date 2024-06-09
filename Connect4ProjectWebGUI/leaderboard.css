@@ -1,0 +1,65 @@
+body {
+            font-family: 'Lalezar', sans-serif;
+            background-color: #87CEEB; /* Light blue background */
+            color: #333; /* Dark text color */
+            text-align: center;
+        }
+        .leaderboard-container {
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 1.2em;
+        }
+        table thead {
+            background-color: #333;
+            color: #fff;
+        }
+        table th, table td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        table tbody tr:nth-child(even) {
+            background-color: #f3f3f3;
+        }
+        table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .leaderboard-menu-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .leaderboard-menu-buttons button {
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            background-color: #333;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .leaderboard-menu-buttons button:hover {
+            background-color: #555;
+        }
+        .leaderboard-menu-buttons label {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 1em;
+            background-color: #f3f3f3;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
