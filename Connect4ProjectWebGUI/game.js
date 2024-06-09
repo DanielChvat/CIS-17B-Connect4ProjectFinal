@@ -269,7 +269,7 @@ class Controller {
         
         
         this.model.player1.color = this.view.p1Color.value;
-        this.model.player1.setName();
+        this.model.player1.setName('Player 1');
         this.model.currentPlayer = this.model.player1;
         this.view.hideColorSel();
         this.view.showBoard();
@@ -308,6 +308,7 @@ class Controller {
             const winner = this.model.checkWin();
             if (winner) {
                 this.view.showMsg(`${this.model.currentPlayer.name} wins!`);
+                sendWinner(this.model.currentPlayer.name);
                 this.model.isGameOver = true;
                 return;
             } else {
@@ -350,6 +351,7 @@ class Controller {
             const winner = this.model.checkWin();
             if (winner) {
                 this.view.showMsg(`${this.model.currentPlayer.name}: wins!`);
+                sendWinner(this.model.currentPlayer.name);
                 this.model.isGameOver = true;
                 return;
             } else {
@@ -578,6 +580,30 @@ class Controller {
         }
     }
 }
+
+function sendWinner(winner){
+    $.ajax({
+        
+        type: "POST",
+        url: 'game.php',
+        data: {action: 'sendWinner', data: winner},
+        success: function() {
+           console.log("Wins updated");
+
+        },
+        
+        error: function(xhr, status, error) {
+            console.error('Error:', error);
+            
+            
+        }
+       
+    });
+    
+    
+
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
     const rows = 6;
