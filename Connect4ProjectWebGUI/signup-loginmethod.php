@@ -96,11 +96,14 @@ if($_SERVER['REQUEST_METHOD'] == 'POST') {
             
             if($stmt->num_rows > 0) {
                 echo "<script>console.log('Welcome Admin!');</script>";
+                setcookie("admin", "true", time() + (86400 * 30), "/"); 
                 header("Location: gameAdmin.php");
             }
             
             else {
+                
                 header("Location: game.php");
+                setcookie("admin", "false", time() + (86400 * 30), "/"); 
             }
             
             

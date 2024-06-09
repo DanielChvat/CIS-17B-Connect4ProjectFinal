@@ -9,42 +9,53 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect4</title>
-    <link rel="stylesheet" href="adminmenu.css">
+    <link rel="stylesheet" href="admin.css">
+    <title>Connect4 - Admin Page</title>
 </head>
 <body>
     <?php include 'AdminPhp.php' ?>
     <div class="admin-container">
-        <h1>ADMIN PAGE</h1>
-        <a href="gameAdmin.php" class="home-button">Home <i class="fa fa-home"></i></a>
-        <button id="edit-button" class="edit-button">Edit <i class="fa fa-pencil"></i></button>
+        <!-- <h1>ADMIN PAGE</h1> -->
+        <div class = "adminPage"> <img src = "images/adminPage.png"> </div>
+        
+        <div class = "backHome">
+            <a href="index.php"> <i class="fa fa-home"></i></a>
+            <button id="edit-button"> <i class="fa fa-pencil"></i></button>
+        </div>
+
         <div class="users-container">
             <ul id="user-list"></ul>
         </div>
-        <div class="admin-menu-buttons">
-            <button id="left-arrow" class="nav-button"><</button>
-            <label id="pageNum">1</label>
-            <button id="right-arrow" class="nav-button">></button>
-        </div>
-        <form method="POST" class="user-form">
+
+        <form method = "POST">
             <div class="form-group">
-                <label for="Username">Username</label>
-                <input type="text" id="Username" name="Username" required>
-                <label for="Password">Password</label>
-                <input type="text" id="Password" name="Password" required>  
-                <label for="LastName">Last Name</label>
-                <input type="text" id="LastName" name="LastName" required> 
-                <label for="FirstName">First Name</label>
-                <input type="text" id="FirstName" name="FirstName" required> 
-                <label for="isAdmin">Admin</label>
-                <input type="checkbox" id="isAdmin" name="isAdmin">
+                <!-- <div class = "username"> -->
+                    <label for="">Username</label>
+                    <input type="text" id="Username" name="Username" required class="box">
+                <!-- </div> -->
+                
+                <label for="">Password</label>
+                <input type="text" id="Password" name="Password" required class="box">  
+                <label for="">Last Name</label>
+                <input type="text" id="LastName" name="LastName" required class="box"> 
+                <label for="">First Name</label>
+                <input type="text" id="FirstName" name="FirstName" required class="box"> 
+                <div class = "adminCheck">
+                    <label for="">Admin</label>
+                    <input type="checkbox" id="isAdmin" name="isAdmin" class = "check">
+                </div>
                 <button type="submit" class="btn" name="addUser">Add User</button>
+                <button type="submit" class="btn" name="genUser">Generate Users</button>
             </div>
         </form>
-        <form action="fillUsers.php" method="post" class="generate-users-form">
-            <button type="submit" class="btn">Generate Users</button>
-        </form>
-        <script src="adminMenu.js"></script>
+         
     </div>
+
+    <div class="admin-menu-buttons">
+        <button id="left-arrow"><</button>
+        <label id="pageNum">1</label>
+        <button id="right-arrow">></button>
+    </div>
+        <script src="adminMenu.js"></script>
 </body>
 </html>

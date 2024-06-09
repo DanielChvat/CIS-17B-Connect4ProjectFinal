@@ -44,7 +44,6 @@ html {
     align-self: center;
     margin-top: 250px;
     margin-bottom: 250px;
-    
 }
 
 .cell {
@@ -129,8 +128,6 @@ h2 {
     background-color: #1565F8;
 }
 
-
-
 label {
     font-size: 20px;
     font-family: "Inter";
@@ -153,10 +150,55 @@ label {
     background-color: green;
 }
 
+/* .win-banner {
+    display: block;
+    margin-top: 10px;
+    background-image: url("images/win-banner.png");
+    background-repeat: no-repeat;
+    background-size: contain; 
+    object-fit:contain;
+    width: 500px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    
+} */
+
 #winner-message {
-    margin: 20px auto;
-    font-size: 24px;
     font-weight: bold;
+    margin-top: 15px;
+   
+
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+
+    height: 110px;
+    justify-content: center;
+    align-content: center;
+    width: 650px;
+
+    background-image: url("images/win-banner.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    object-fit:contain;
+    background-size: 395px;
+
+}
+
+
+#game-container {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    text-align: center;
 }
 
 .hidden {
@@ -217,13 +259,26 @@ button:hover {
 }
   
 .options{
+    display: flex;
+    /* position: fixed; */
 
-    display: inline;
-    margin-bottom: 5px;
+    position: relative;
 
+    flex-direction: column;
+    padding: 0;
+    margin-left: 80vw;
+    width: 180px;
+    margin-top: 0;
+    margin-bottom: 45px;
 }
 
-.turns-container {
+.options button {
+    margin: 10px;
+}
+
+#turns-container {
+    display: 'flex';
+    
     position: fixed;
     margin-inline-start: 0;
     font-size: 20px;
@@ -233,7 +288,7 @@ button:hover {
     margin: 0;
 }
 
-.turns-container h3 {
+#turns-container h3 {
     font-family: "Lalezar";
     font-size: 50px;
     margin: 0;
@@ -245,9 +300,8 @@ button:hover {
     -webkit-text-stroke: 1.8px black;
 }
 
-.turns-container .container-com{
+#turns-container .container-com{
     background-color: #1565F8;
-    box-shadow: none;
     /* border-radius: 10px; */
     border-radius: 0 17px 17px 0;
     width: 170px;
@@ -255,12 +309,12 @@ button:hover {
     
 }
 
-.turns-container p{
+#turns-container p{
     padding:10px;
     color: #FFFF;
 }
 
-.turns-container .container-player{
+#turns-container .container-player{
     background-color: #C051FF;
     /* border-radius: 10px; */
     border-radius: 0 17px 17px 0;

@@ -20,14 +20,18 @@
         session_start();
     ?>
     <script>
-        
         function checkCookie() {
             var username = getCookie("user");
-            if (username != "") {
-             
-                alert("Welcome back, " + username + "!");
+            var isAdmin = getCookie("admin");
+            if (username !== "") {
+                if (isAdmin === "true") {
+                    alert("Welcome back, Admin " + username + "!");
+                    window.location.href = "gameAdmin.php";
+                } else {
+                    alert("Welcome back, " + username + "!");
+                    window.location.href = "game.php";
+                }
                 
-                window.location.href ="game.php";
             }
         }
 
@@ -37,16 +41,17 @@
             var ca = decodedCookie.split(';');
             for (var i = 0; i < ca.length; i++) {
                 var c = ca[i];
-                while (c.charAt(0) == ' ') {
+                while (c.charAt(0) === ' ') {
                     c = c.substring(1);
                 }
-                if (c.indexOf(name) == 0) {
+                if (c.indexOf(name) === 0) {
                     return c.substring(name.length, c.length);
                 }
             }
             return "";
         }
-    </script>
+</script>
+
 </head>
 <body onload="checkCookie()">
     <img class="board_main_menu" src="board_main_menu.svg"></img>

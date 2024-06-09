@@ -2,7 +2,7 @@
 session_start();
 
 require 'dbconnect.php';
-$display = 20;
+$display = 8;
 
 // Handle user deletion and addition
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
