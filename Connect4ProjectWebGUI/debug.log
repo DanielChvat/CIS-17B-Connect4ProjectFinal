@@ -1,0 +1,87 @@
+Session Username: Test
+POST data: Array
+(
+)
+
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
+Session Username: Test
+POST data: Array
+(
+)
+
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
+Session Username: Test
+POST data: Array
+(
+)
+
+Session Username: Test
+POST data: Array
+(
+    [action] => sendWinner
+    [data] => Computer
+)
+
+Winner: Computer
