@@ -1,23 +1,24 @@
-html, 
-body {
-    margin: 0
+html {
+    margin: 0;
+    padding:0;
 }
 
 body {
-    background: linear-gradient(180deg, #039FFF 0%, #5CC1FF 38%, #A6DDFF 76%);
+    background-image: url('images/bgindex.png');
+    background-size:cover;
     height: 100vh;
     width: 100vw;
     display: grid;
     grid-template-columns: max-content auto;
     align-items: center;
+    margin:0;
+    padding:0;
 }
 
 .menu_container {
     display: grid;
     justify-items: center;
     align-items: center;
-
-    margin-bottom: 100px;
 }
 
 .title {
@@ -30,9 +31,7 @@ body {
     align-items: center;
     text-align: center;
     letter-spacing: 0.11em;
-
     color: #FCC634;
-
     text-shadow: 0px 0px 20px #1565F8;
 }
 
@@ -44,22 +43,41 @@ body {
 button {
     margin: 0 2em;
     padding: 0.5em 1.4em;
-
     background: #FCC634;
     border: 3px solid #1565F8;
     border-radius: 20px;
-
-    font-family: 'Inter';
+    font-family: 'Inter', sans-serif;
     font-size: 1.6em;
     text-align: center;
+    text-decoration: none;
+    color: #1565F8;
 }
 button:hover {
     cursor: pointer;
+    background-color: #1565F8;
+    color: #FCC634;
+    border: 3px solid #FCC634;
 }
 
 .board_main_menu {
-    float: left;
-    padding: 10% 0;
+    align-items: left;
+    padding:0;
     max-height: 95vh;
     box-sizing: border-box;
+    margin:0;
+}
+
+.footer h3{
+    margin-top: 100px;
+    font-family:'Inter', sans-serif;
+    font-size: 20px;
+    color: #1565F8;
+}
+
+.footer h3 a{
+    text-decoration: none;
+}
+
+.footer h3 a:hover{
+    text-decoration:underline;
 }
