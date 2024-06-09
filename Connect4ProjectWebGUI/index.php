@@ -16,7 +16,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connect4</title>
-    <?php
+    
+     <!-- Cookie Jar -->
+     <?php
         session_start();
     ?>
     <script>
@@ -53,15 +55,17 @@
 </script>
 
 </head>
-<body onload="checkCookie()">
+<body>
     <img class="board_main_menu" src="board_main_menu.svg"></img>
     <div class="menu_container">
         <h1 class="title">CONNECT4</h1>
         <div class="menu_buttons">
-            <button><a href = "signup.php">Sign Up</a></button>
-            <button><a href = "login.php">Login</a></button>
+            <a href = "signup.php"><button>Sign Up</button></a>
+            <a href = "login.php"><button>Log In</button></a>
+        </div>
+        <div class="footer">
+            <h3>Click here if you are an <a href='adminMenu.php'><strong> admin</strong></a>.</h3>
         </div>
     </div>
-    <div class="background_clouds"></div>
 </body>
 </html>

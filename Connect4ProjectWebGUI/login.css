@@ -62,6 +62,8 @@ button:hover {
     box-shadow: 0 4px 35px rgba(0, 0, 0, 4)
 }
 
+/* adjusted for password visibility */
+
 .username, .pass{
     display: flex;
     flex-direction:column;
@@ -86,6 +88,8 @@ button:hover {
     border: 1px solid #ccc;
     border-radius: 40px;
 }
+
+/* end of adjusted */
 
 label {
     font-size: 30px;

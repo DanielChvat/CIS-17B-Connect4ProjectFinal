@@ -4,11 +4,17 @@ session_start();
 
 require 'dbconnect.php';
 
+
+
+
 if (!isset($_SESSION['Username']) && isset($_COOKIE['user'])) {
     $_SESSION['Username'] = $_COOKIE['user'];
 }
 
 echo "<script>console.log('Current User: " . $_SESSION['Username'] . "' );</script>";
+
+
+
 
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);

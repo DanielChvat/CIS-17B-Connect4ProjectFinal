@@ -259,10 +259,17 @@ class Controller {
         this.view.undoBtn.addEventListener('click', () => this.undoMove());
         this.view.boardEl.addEventListener('click', (event) => this.cellClick(event));
     }
-
+    
+    
+    
+    
     startGame() {
+        
+        
+        
+        
         this.model.player1.color = this.view.p1Color.value;
-        this.model.player1.setName('Player 1');
+        this.model.player1.setName();
         this.model.currentPlayer = this.model.player1;
         this.view.hideColorSel();
         this.view.showBoard();
@@ -300,7 +307,7 @@ class Controller {
             this.view.renderBoard(this.model.board.grid);
             const winner = this.model.checkWin();
             if (winner) {
-                this.view.showMsg(`${this.model.currentPlayer.name}: ${winner.player.toUpperCase()} wins!`);
+                this.view.showMsg(`${this.model.currentPlayer.name} wins!`);
                 this.model.isGameOver = true;
                 return;
             } else {
@@ -342,7 +349,7 @@ class Controller {
             this.view.renderBoard(this.model.board.grid);
             const winner = this.model.checkWin();
             if (winner) {
-                this.view.showMsg(`${this.model.currentPlayer.name}: ${winner.player.toUpperCase()} wins!`);
+                this.view.showMsg(`${this.model.currentPlayer.name}: wins!`);
                 this.model.isGameOver = true;
                 return;
             } else {
@@ -565,10 +572,6 @@ class Controller {
         console.log("ran");
         if (winner) {
             const playerName = this.getPlayerName(winner);
-            if(playerName !== "Computer"){
-                playerName = "<?php echo $_SESSION['Username']; ?>";
-                console.log("Winner: ", playerName);
-            }
             this.view.showMsg(`${playerName} Wins!`);
         } else {
             this.view.showMsg('It\'s a draw!');

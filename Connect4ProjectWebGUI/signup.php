@@ -6,6 +6,8 @@
     <title>Signup</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="signup.css">
+    
+    
     <script>
         function regexValidation() {
             var username = document.getElementById("Username").value;
@@ -39,6 +41,7 @@
     
     
     </script>
+    
 </head>
 <body>
 
